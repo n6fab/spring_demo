@@ -5,18 +5,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
 public class Person {
-    private final UUID id;
+    private final Long id;
 
 
     private final String name;
 
-    public Person(@JsonProperty("id") UUID id,
+    public Person(@JsonProperty("id") Long id,
                   @JsonProperty("name") String name) { //constructors parameters
         this.id = id;
         this.name = name;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 

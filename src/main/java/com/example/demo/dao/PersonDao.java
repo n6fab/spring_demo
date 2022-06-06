@@ -4,16 +4,14 @@ import com.example.demo.model.Person;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.UUID;
 
 public interface PersonDao {
-    int insertPerson(UUID id, Person person); // inserire una persona con un determinato ID
-    default int insertPerson(Person person) { // inserire senza ID e l’ID è generato random
-        UUID id = UUID.randomUUID();
-        return insertPerson(id, person);
-    }
-    Optional<Person> selectPersonById(UUID id);
+    int insertPerson(Person person); // inserire una persona con un determinato ID
+
+    Optional<Person> selectPersonById(Long id);
     List<Person> selectAllPeople();
-    int deletePersonById(UUID id);
-    int updatePersonById(UUID id, Person person);
+    int deletePersonById(Long id);
+    int updatePersonById(Long id, Person person);
 }

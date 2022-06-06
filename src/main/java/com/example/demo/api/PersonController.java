@@ -25,16 +25,16 @@ public class PersonController {
         return personService.getAllPeople();
     }
     @GetMapping(path = "{id}")
-    public Person getPersonById(@PathVariable ("id") UUID id) {
+    public Person getPersonById(@PathVariable ("id") Long id) {
         return personService.getPersonById(id)
                 .orElse(null);
     }
     @DeleteMapping(path = "{id}")
-    public void deletePersonById(@PathVariable("id") UUID id){
+    public void deletePersonById(@PathVariable("id") Long id){
         personService.deletePerson(id);
     }
     @PutMapping(path = "{id}")
-    public void updatePerson(@PathVariable("id") UUID id, @RequestBody Person personToUpdate) {
+    public void updatePerson(@PathVariable("id") Long id, @RequestBody Person personToUpdate) {
         personService.updatePerson(id, personToUpdate);
     }
 }
