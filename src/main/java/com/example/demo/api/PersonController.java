@@ -1,26 +1,28 @@
 package com.example.demo.api;
 
+import com.example.demo.dao.PersonDao;
 import com.example.demo.model.Person;
 import com.example.demo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.UUID;
-
-@RequestMapping("api/v1/person")
 @RestController
+@RequestMapping("api/v1/person")
 public class PersonController {
-    private final PersonService personService;
-    @Autowired
-    public PersonController(PersonService personService) {
-        this.personService = personService;
-    }
+   @Autowired
+    private PersonDao personDao;
     @PostMapping
-    public void addPerson(@RequestBody Person person) {
-        personService.addPerson(person);
+ /*   public @ResponseBody String addPerson(@JsonProperty Long id, @JsonProperty String name) {
+     ;*/
+       public @ResponseBody String addPerson (@RequestParam String name) {
+            // @ResponseBody means the returned String is the response, not a view name
+            // @RequestParam means it is a parameter from the GET or POST request
+        Person n = new Person();
+        n.setName(name);
+        personDao.save(n);
+        return "saved";
     }
-    @GetMapping
+   /* @GetMapping
     public List<Person> getAllPeople() {
         return personService.getAllPeople();
     }
@@ -36,5 +38,5 @@ public class PersonController {
     @PutMapping(path = "{id}")
     public void updatePerson(@PathVariable("id") Long id, @RequestBody Person personToUpdate) {
         personService.updatePerson(id, personToUpdate);
-    }
+    }*/
 }

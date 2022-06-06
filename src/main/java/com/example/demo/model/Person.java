@@ -1,26 +1,30 @@
 package com.example.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-import java.util.UUID;
-
+@Entity
 public class Person {
-    private final Long id;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
 
-
-    private final String name;
-
-    public Person(@JsonProperty("id") Long id,
-                  @JsonProperty("name") String name) { //constructors parameters
+    private String name;
+   /* public Person() { //constructors parameters
         this.id = id;
         this.name = name;
-    }
+    }*/
 
-    public Long getId() {
+   /* public Long getId() {
         return id;
     }
 
     public String getName() {
         return name;
+    }*/
+    public void setName(String name) {
+        this.name = this.name;
     }
 }
