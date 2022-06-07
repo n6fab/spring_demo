@@ -2,9 +2,10 @@ package com.example.demo.api;
 
 import com.example.demo.dao.PersonDao;
 import com.example.demo.model.Person;
-import com.example.demo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/person")
@@ -24,12 +25,11 @@ public class PersonController {
     public @ResponseBody Iterable<Person> getAllPerson() {
         return personDao.findAll();
     }
-    /*@GetMapping(path = "{id}")
-    public Person getPersonById(@PathVariable ("id") Long id) {
-        return personService.getPersonById(id)
-                .orElse(null);
+    @GetMapping(path = "{id}")
+    public Optional<Person> getPersonById(@PathVariable ("id") Long id) {
+        return personDao.findById(id);
     }
-    @DeleteMapping(path = "{id}")
+   /* @DeleteMapping(path = "{id}")
     public void deletePersonById(@PathVariable("id") Long id){
         personService.deletePerson(id);
     }
