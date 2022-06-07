@@ -29,11 +29,11 @@ public class PersonController {
     public Optional<Person> getPersonById(@PathVariable ("id") Long id) {
         return personDao.findById(id);
     }
-   /* @DeleteMapping(path = "{id}")
+   @DeleteMapping(path = "{id}")
     public void deletePersonById(@PathVariable("id") Long id){
-        personService.deletePerson(id);
+        personDao.deleteById(id);
     }
-    @PutMapping(path = "{id}")
+    /* @PutMapping(path = "{id}")
     public void updatePerson(@PathVariable("id") Long id, @RequestBody Person personToUpdate) {
         personService.updatePerson(id, personToUpdate);
     }*/
