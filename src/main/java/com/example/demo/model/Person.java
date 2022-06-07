@@ -15,18 +15,15 @@ public class Person {
     public void setName(String name) {
         this.name = name;
     }
-}
-
+    public String getName() {
+        return name;
+    }
+    public Long getId() {
+        return id;
+    }
 
    /* public Person() { //constructors parameters
         this.id = id;
         this.name = name;
     }*/
-
-   /* public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }*/
+}

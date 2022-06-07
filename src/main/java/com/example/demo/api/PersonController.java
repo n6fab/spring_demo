@@ -12,8 +12,6 @@ public class PersonController {
    @Autowired
     private PersonDao personDao;
     @PostMapping
- /*   public @ResponseBody String addPerson(@JsonProperty Long id, @JsonProperty String name) {
-     ;*/
        public @ResponseBody String addPerson (@RequestBody String name) {
             // @ResponseBody means the returned String is the response, not a view name
             // @RequestParam means it is a parameter from the GET or POST request
@@ -22,11 +20,11 @@ public class PersonController {
         personDao.save(n);
         return "saved";
     }
-   /* @GetMapping
-    public List<Person> getAllPeople() {
-        return personService.getAllPeople();
+    @GetMapping
+    public @ResponseBody Iterable<Person> getAllPerson() {
+        return personDao.findAll();
     }
-    @GetMapping(path = "{id}")
+    /*@GetMapping(path = "{id}")
     public Person getPersonById(@PathVariable ("id") Long id) {
         return personService.getPersonById(id)
                 .orElse(null);
