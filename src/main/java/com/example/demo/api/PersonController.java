@@ -14,7 +14,7 @@ public class PersonController {
     @PostMapping
  /*   public @ResponseBody String addPerson(@JsonProperty Long id, @JsonProperty String name) {
      ;*/
-       public @ResponseBody String addPerson (@RequestParam String name) {
+       public @ResponseBody String addPerson (@RequestBody String name) {
             // @ResponseBody means the returned String is the response, not a view name
             // @RequestParam means it is a parameter from the GET or POST request
         Person n = new Person();
