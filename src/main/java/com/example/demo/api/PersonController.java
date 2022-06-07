@@ -11,7 +11,7 @@ import java.util.Optional;
 @RequestMapping("api/v1/person")
 public class PersonController {
     @Autowired
-    private PersonDao personDao;
+    PersonDao personDao; //private
 
     @PostMapping
        public @ResponseBody String addPerson(@RequestBody Person person) {
