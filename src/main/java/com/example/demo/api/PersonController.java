@@ -10,31 +10,38 @@ import java.util.Optional;
 @RestController
 @RequestMapping("api/v1/person")
 public class PersonController {
-   @Autowired
+    @Autowired
     private PersonDao personDao;
+
     @PostMapping
-       public @ResponseBody String addPerson (@RequestBody String name) {
-            // @ResponseBody means the returned String is the response, not a view name
-            // @RequestParam means it is a parameter from the GET or POST request
-        Person n = new Person();
-        n.setName(name);
-        personDao.save(n);
+    public @ResponseBody String addPerson(@RequestBody String name) {
+        Person p = new Person();
+        p.setName(name);
+        personDao.save(p);
         return "saved";
     }
+
     @GetMapping
     public @ResponseBody Iterable<Person> getAllPerson() {
         return personDao.findAll();
     }
+
     @GetMapping(path = "{id}")
-    public Optional<Person> getPersonById(@PathVariable ("id") Long id) {
+    public Optional<Person> getPersonById(@PathVariable("id") Long id) {
         return personDao.findById(id);
     }
-   @DeleteMapping(path = "{id}")
-    public void deletePersonById(@PathVariable("id") Long id){
+
+    @DeleteMapping(path = "{id}")
+    public void deletePersonById(@PathVariable("id") Long id) {
         personDao.deleteById(id);
     }
-    /* @PutMapping(path = "{id}")
-    public void updatePerson(@PathVariable("id") Long id, @RequestBody Person personToUpdate) {
-        personService.updatePerson(id, personToUpdate);
-    }*/
+
+    @PutMapping(path = "{id}")
+    public Optional<Person> updatePost(@PathVariable Long id, @RequestBody Person personUpDate) {
+        return personDao.findById(id)
+                .map(person -> {
+                    person.setName(personUpDate.getName());
+                    return personDao.save(person);
+                });
+    }
 }

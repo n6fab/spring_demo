@@ -21,9 +21,7 @@ public class Person {
     public Long getId() {
         return id;
     }
-
-   /* public Person() { //constructors parameters
+    public void setId (Long id) {
         this.id = id;
-        this.name = name;
-    }*/
+    }
 }
