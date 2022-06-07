@@ -12,6 +12,12 @@ public class Person {
     private Long id;
 
     private String name;
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+
+
    /* public Person() { //constructors parameters
         this.id = id;
         this.name = name;
@@ -24,7 +30,3 @@ public class Person {
     public String getName() {
         return name;
     }*/
-    public void setName(String name) {
-        this.name = this.name;
-    }
-}
