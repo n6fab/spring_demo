@@ -14,13 +14,12 @@ public class PersonController {
     private PersonDao personDao;
 
     @PostMapping
-    public @ResponseBody String addPerson(@RequestBody String name) {
+       public @ResponseBody String addPerson(@RequestBody Person person) {
         Person p = new Person();
-        p.setName(name);
+        p.setName(person.getName());
         personDao.save(p);
         return "saved";
     }
-
     @GetMapping
     public @ResponseBody Iterable<Person> getAllPerson() {
         return personDao.findAll();
