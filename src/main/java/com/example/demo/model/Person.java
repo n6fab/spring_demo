@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,7 +12,7 @@ public class Person {
     @GeneratedValue(strategy= GenerationType.AUTO)
     Long id; //private?
     private String name;
-
+@JsonIgnore
     @ManyToMany(mappedBy = "enrolledStudents") //collezioneLavori
     private Set<Lavoro> subjects  = new HashSet<>(); //lavori
 

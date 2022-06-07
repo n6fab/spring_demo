@@ -16,7 +16,7 @@ public class LavoroController {
     @Autowired
     LavoroDao lavoroDao; //private?
     @Autowired
-  PersonDao personDao; //private?
+    PersonDao personDao; //private?
 
     @PostMapping
     public @ResponseBody String addPerson(@RequestBody Lavoro person) {
