@@ -23,7 +23,7 @@ public class Person {
     private Lavoro lavoro;
  /*  @PrimaryKeyJoinColumn
  // @JoinColumn(name = "lavoro_id", referencedColumnName = "id" ) //primary kay of address
-    private Lavoro lavoro;
+    private Lavoro lavoro;q
     @JoinTable (
             name="person_lavoro", //""
             joinColumns = @JoinColumn(name = "lavoro_id"),

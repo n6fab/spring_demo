@@ -31,24 +31,20 @@ public class PersonController {
         return personDao.findAll();
     }
 
-    @GetMapping(path = "{id}")
+    @GetMapping(path = "/getId/{id}")
     public Optional<Person> getPersonById(@PathVariable("id") Long id) {
         return personDao.findById(id);
     }
+
+   @GetMapping(path = "/getName/{name}")
+   public Optional<Person> getLavoroByPersona(@PathVariable("name") String name) { //@RequestParam Person personSearch
+           return personDao.findByName(name);
+       }
 
     @DeleteMapping(path = "{id}")
     public void deletePersonById(@PathVariable("id") Long id) {
         personDao.deleteById(id);
     }
-
-   /* @PutMapping(path = "{id}")
-    public Optional<Person> updatePost(@PathVariable Long id, @RequestBody Person personUpDate) {
-        return personDao.findById(id)
-                .map(person -> {
-                    person.setName(personUpDate.getName());
-                    return personDao.save(person);
-                });
-    }*/
 
     @PutMapping(path = "/name/{id}")
     public Optional<Person> updatePost(@PathVariable Long id, @RequestBody Person personUpDate) {
