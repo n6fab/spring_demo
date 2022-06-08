@@ -48,14 +48,14 @@ public class LavoroController {
                     return lavoroDao.save(person);
                 });
     }
-    @PutMapping("/{lavoro_id}/person/{person_id}")
+  /*  @PutMapping("/{lavoro_id}/person/{person_id}")
     Lavoro addPersonToLavoro(
                     @PathVariable Long lavoro_id,
                     @PathVariable Long person_id
             ) {
             Lavoro lavoro = lavoroDao.findById(lavoro_id).get();
             Person person = personDao.findById(person_id).get();
-            lavoro.enrolledStudents.add(person);
+            lavoro.collezioneLavori.add(person);
             return lavoroDao.save(lavoro);
-    }
+    }*/
 }

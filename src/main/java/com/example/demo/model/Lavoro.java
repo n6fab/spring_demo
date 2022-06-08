@@ -13,16 +13,32 @@ public class Lavoro {
     Long id; //private?
     private String name;
 
-    @ManyToMany
+    /*   public Person getPerson() {
+           return person;
+       }
+
+       public void setPerson(Person person) {
+           this.person = person;
+       }
+   @OneToOne
+   @MapsId
+   @JoinColumn(name = "person_id")
+   private Person person;
+       @OneToOne*/
+    /*@JsonIgnore
+       @ManyToMany(mappedBy = "collezioneLavori")
+       private Set<Lavoro> subjects  = new HashSet<>(); //lavori
+   */
+   /* @ManyToMany
     @JoinTable (
-            name="student_enrolled", //"person_lavoro"
+            name="person_lavoro",
             joinColumns = @JoinColumn(name = "lavoro_id"),
             inverseJoinColumns = @JoinColumn(name = "person_id")
     )
     public
 
-    Set<Person> enrolledStudents = new HashSet<>(); //collezioneLavori
-
+    Set<Person> collezioneLavori = new HashSet<>(); //collezioneLavori
+*/
     public Long getId() {
         return id;
     }
@@ -35,7 +51,7 @@ public class Lavoro {
     public void setName(String name) {
         this.name = name;
     }
-    public Set<Person> getEnrolledStudents() { //getCollezioneLavori()
-        return enrolledStudents; //collezioneLavori
-    }
+  /*  public Set<Person> getCollezioneLavori() { //getCollezioneLavori()
+        return collezioneLavori; //collezioneLavori
+    }*/
 }

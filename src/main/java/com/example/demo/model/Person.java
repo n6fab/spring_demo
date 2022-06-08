@@ -1,21 +1,40 @@
 package com.example.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 public class Person {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    Long id; //private?
+    private Long id; //private?
     private String name;
-@JsonIgnore
-    @ManyToMany(mappedBy = "enrolledStudents") //collezioneLavori
-    private Set<Lavoro> subjects  = new HashSet<>(); //lavori
 
+
+    public Lavoro getLavoro() {
+        return lavoro;
+    }
+
+    public void setLavoro(Lavoro lavoro) {
+        this.lavoro = lavoro;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "lavoro_id")
+    private Lavoro lavoro;
+ /*  @PrimaryKeyJoinColumn
+ // @JoinColumn(name = "lavoro_id", referencedColumnName = "id" ) //primary kay of address
+    private Lavoro lavoro;
+    @JoinTable (
+            name="person_lavoro", //""
+            joinColumns = @JoinColumn(name = "lavoro_id"),
+            inverseJoinColumns = @JoinColumn(name = "person_id")
+    )*/
+
+
+     /*@JsonIgnore
+        @ManyToMany(mappedBy = "collezioneLavori")
+        private Set<Lavoro> subjects  = new HashSet<>(); //lavori
+    */
     public String getName() {
         return name;
     }
@@ -28,7 +47,7 @@ public class Person {
     public void setId (Long id) {
         this.id = id;
     }
-    public Set<Lavoro> getSubjects() {//getLavori
+  /*  public Set<Lavoro> getSubjects() {//getLavori
         return subjects;//lavori
-    }
+    }*/
 }
