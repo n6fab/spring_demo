@@ -11,36 +11,36 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/v1/subjects") //lavori
+@RequestMapping("api/v1/lavoro") //
 public class LavoroController {
     @Autowired
-    LavoroDao lavoroDao; //private?
+    private LavoroDao lavoroDao; //private?
     @Autowired
-    PersonDao personDao; //private?
+    private PersonDao personDao; //private?
 
     @PostMapping
-    public @ResponseBody String addPerson(@RequestBody Lavoro person) {
+    public @ResponseBody String addLavoro(@RequestBody Lavoro person) {
         Lavoro l = new Lavoro();
         l.setName(person.getName());
         lavoroDao.save(l);
         return "saved";
     }
     @GetMapping
-    public @ResponseBody Iterable<Lavoro> getAllPerson() {
+    public @ResponseBody Iterable<Lavoro> getAllLavoro() {
         return lavoroDao.findAll();
     }
 
     @GetMapping(path = "{id}")
-    public Optional<Lavoro> getPersonById(@PathVariable("id") Long id) {
+    public Optional<Lavoro> getLavoroById(@PathVariable("id") Long id) {
         return lavoroDao.findById(id);
     }
 
     @DeleteMapping(path = "{id}")
-    public void deletePersonById(@PathVariable("id") Long id) {
+    public void deleteLavoroById(@PathVariable("id") Long id) {
         lavoroDao.deleteById(id);
     }
 
-    @PutMapping(path = "{id}")
+    @PutMapping(path = "/name/{id}")
     public Optional<Lavoro> updatePost(@PathVariable Long id, @RequestBody Lavoro lavoroUpDate) {
         return lavoroDao.findById(id)
                 .map(person -> {
