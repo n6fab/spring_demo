@@ -4,6 +4,7 @@ import com.example.demo.dao.LavoroDao;
 import com.example.demo.dao.PersonDao;
 import com.example.demo.model.Lavoro;
 import com.example.demo.model.Person;
+import com.fasterxml.jackson.annotation.JsonRawValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,10 +37,15 @@ public class PersonController {
         return personDao.findById(id);
     }
 
-   @GetMapping(path = "/getName/{name}")
-   public Optional<Person> getLavoroByPersona(@PathVariable("name") String name) { //@RequestParam Person personSearch
-           return personDao.findByName(name);
-       }
+  @JsonRawValue
+       @GetMapping(path = "/getLavoroByPersona/{name}") //getLavoroByPersona
+       public @ResponseBody Optional<Lavoro> getLavoroByPersona(@PathVariable("name") String name) { //@RequestParam Person personSearch
+       //ptional<Person> p = new Person();
+        return personDao.findByName(name)
+      .map(lavoro -> {
+       return lavoro.getLavoro();
+    });
+    }
 
     @DeleteMapping(path = "{id}")
     public void deletePersonById(@PathVariable("id") Long id) {
