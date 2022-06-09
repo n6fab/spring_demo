@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo;
 
 import com.example.demo.model.Person;
 import org.springframework.boot.SpringApplication;
