@@ -14,8 +14,8 @@ import java.util.Optional;
 @RequestMapping("api/v1/person")
 public class PersonController {
     @Autowired
-    PersonDao personDao; //private
-    LavoroDao lavoroDao;
+    private PersonDao personDao;
+    private LavoroDao lavoroDao;
 
     @PostMapping
        public @ResponseBody String addPerson(@RequestBody Person person) { //, Lavoro lavoro
@@ -40,17 +40,13 @@ public class PersonController {
          public @ResponseBody Iterable<Person> getNamesByCha(@PathVariable("lettera") Character lettera) {
             return personDao.findByChar(lettera);
         }
-     /*   public @ResponseBody Optional<Person> getNamesByCha(@PathVariable("lettera") Character lettera) {
-
-        }*/
 
         /* getLavoroByPersona */
         @JsonRawValue
        @GetMapping(path = "/getLavoroByPersona/{name}")
        public @ResponseBody Optional<Lavoro> getLavoroByPersona(@PathVariable("name") String name) {
-
         return personDao.findByName(name)
-      .map(Person::getLavoro);
+        .map(Person::getLavoro);
        /*    .map(lavoro -> {
           return lavoro.getLavoro();
       });*/

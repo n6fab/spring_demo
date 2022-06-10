@@ -21,20 +21,7 @@ public class Person {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "lavoro_id")
     private Lavoro lavoro;
- /*  @PrimaryKeyJoinColumn
- // @JoinColumn(name = "lavoro_id", referencedColumnName = "id" ) //primary kay of address
-    private Lavoro lavoro;q
-    @JoinTable (
-            name="person_lavoro", //""
-            joinColumns = @JoinColumn(name = "lavoro_id"),
-            inverseJoinColumns = @JoinColumn(name = "person_id")
-    )*/
 
-
-     /*@JsonIgnore
-        @ManyToMany(mappedBy = "collezioneLavori")
-        private Set<Lavoro> subjects  = new HashSet<>(); //lavori
-    */
     public String getName() {
         return name;
     }
@@ -47,7 +34,4 @@ public class Person {
     public void setId (Long id) {
         this.id = id;
     }
-  /*  public Set<Lavoro> getSubjects() {//getLavori
-        return subjects;//lavori
-    }*/
 }

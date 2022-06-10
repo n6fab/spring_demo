@@ -1,22 +1,20 @@
 package com.example.demo.api;
 
-import ch.qos.logback.core.status.Status;
 import com.example.demo.dao.LavoroDao;
 import com.example.demo.dao.PersonDao;
 import com.example.demo.model.Lavoro;
-import com.example.demo.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/v1/lavoro") //
+@RequestMapping("api/v1/lavoro")
 public class LavoroController {
     @Autowired
-    private LavoroDao lavoroDao; //private?
+    private LavoroDao lavoroDao;
     @Autowired
-    private PersonDao personDao; //private?
+    private PersonDao personDao;
 
     @PostMapping
     public @ResponseBody String addLavoro(@RequestBody Lavoro person) {
@@ -48,14 +46,4 @@ public class LavoroController {
                     return lavoroDao.save(person);
                 });
     }
-  /*  @PutMapping("/{lavoro_id}/person/{person_id}")
-    Lavoro addPersonToLavoro(
-                    @PathVariable Long lavoro_id,
-                    @PathVariable Long person_id
-            ) {
-            Lavoro lavoro = lavoroDao.findById(lavoro_id).get();
-            Person person = personDao.findById(person_id).get();
-            lavoro.collezioneLavori.add(person);
-            return lavoroDao.save(lavoro);
-    }*/
 }
