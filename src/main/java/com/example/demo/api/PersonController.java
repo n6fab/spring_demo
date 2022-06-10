@@ -20,10 +20,7 @@ public class PersonController {
     @PostMapping
        public @ResponseBody String addPerson(@RequestBody Person person) { //, Lavoro lavoro
         Person p = new Person();
-       // Lavoro l = new Lavoro();
         p.setName(person.getName());
-        //l.setName((lavoro.getName()));
-        //lavoroDao.save(l);
         personDao.save(p);
         return "saved";
     }
@@ -37,14 +34,26 @@ public class PersonController {
         return personDao.findById(id);
     }
 
-  @JsonRawValue
-       @GetMapping(path = "/getLavoroByPersona/{name}") //getLavoroByPersona
-       public @ResponseBody Optional<Lavoro> getLavoroByPersona(@PathVariable("name") String name) { //@RequestParam Person personSearch
-       //ptional<Person> p = new Person();
+        //getNamesByChar
+        @JsonRawValue
+        @GetMapping(path = "/getChar/{lettera}")
+         public @ResponseBody Iterable<Person> getNamesByCha(@PathVariable("lettera") Character lettera) {
+            return personDao.findByChar(lettera);
+        }
+     /*   public @ResponseBody Optional<Person> getNamesByCha(@PathVariable("lettera") Character lettera) {
+
+        }*/
+
+        /* getLavoroByPersona */
+        @JsonRawValue
+       @GetMapping(path = "/getLavoroByPersona/{name}")
+       public @ResponseBody Optional<Lavoro> getLavoroByPersona(@PathVariable("name") String name) {
+
         return personDao.findByName(name)
-      .map(lavoro -> {
-       return lavoro.getLavoro();
-    });
+      .map(Person::getLavoro);
+       /*    .map(lavoro -> {
+          return lavoro.getLavoro();
+      });*/
     }
 
     @DeleteMapping(path = "{id}")
