@@ -22,7 +22,7 @@ public class Person {
     @JoinColumn(name = "lavoro_id")
     private Lavoro lavoro;
 
-    public String getName() {
+    public String getName(Iterable<Person> all) {
         return name;
     }
     public Long getId() {
@@ -33,5 +33,12 @@ public class Person {
     }
     public void setId (Long id) {
         this.id = id;
+    }
+    @Override
+    public String toString() {
+        return this.name;
+    }
+    public String getName() {
+        return  this.name;
     }
 }

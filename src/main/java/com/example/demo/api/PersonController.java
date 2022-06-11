@@ -20,11 +20,11 @@ public class PersonController {
     @PostMapping
        public @ResponseBody String addPerson(@RequestBody Person person) { //, Lavoro lavoro
         Person p = new Person();
-        p.setName(person.getName());
+        p.setName(person.getName(personDao.findAll()));
         personDao.save(p);
         return "saved";
     }
-    @GetMapping
+   @GetMapping
     public @ResponseBody Iterable<Person> getAllPerson() {
         return personDao.findAll();
     }
@@ -35,11 +35,19 @@ public class PersonController {
     }
 
         //getNamesByChar
-        @JsonRawValue
+     /*  @JsonRawValue
         @GetMapping(path = "/getChar/{lettera}")
-         public @ResponseBody Iterable<Person> getNamesByCha(@PathVariable("lettera") Character lettera) {
+         public @ResponseBody Iterable<Person> getNamesByChar(@PathVariable("lettera") Character lettera) {
             return personDao.findByChar(lettera);
-        }
+         }*/
+    @JsonRawValue
+    @GetMapping(path = "/getChar/{lettera}")
+    public @ResponseBody String getNamesByChar(@PathVariable("lettera") Character lettera) {
+        Iterable<Person> p = personDao.findByChar(lettera);
+        return p.toString();
+    }
+
+
 
         /* getLavoroByPersona */
         @JsonRawValue
@@ -61,7 +69,7 @@ public class PersonController {
     public Optional<Person> updatePost(@PathVariable Long id, @RequestBody Person personUpDate) {
         return personDao.findById(id)
                 .map(person -> {
-                    person.setName(personUpDate.getName());
+                    person.setName(personUpDate.getName(personDao.findAll()));
                     return personDao.save(person);
                 });
     }
