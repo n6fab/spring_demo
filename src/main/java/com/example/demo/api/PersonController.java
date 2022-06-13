@@ -1,6 +1,5 @@
 package com.example.demo.api;
 
-import com.example.demo.dao.LavoroDao;
 import com.example.demo.model.Lavoro;
 import com.example.demo.model.Person;
 import com.example.demo.service.impl.PersonServiceImpl;
@@ -16,7 +15,6 @@ import java.util.Optional;
 public class PersonController {
     @Autowired
     private PersonServiceImpl personService;
-
     @PostMapping
        public @ResponseBody String addPerson(@RequestBody Person person) {
         personService.save(person);
@@ -26,13 +24,12 @@ public class PersonController {
     public @ResponseBody Iterable<Person> getAllPerson() {
         return personService.findAll();
     }
-
     @GetMapping(path = "/getId/{id}")
     public Optional<Person> getPersonById(@PathVariable("id") Long id) {
         return personService.findById(id);
     }
 
-        //getNamesByChar
+        /* getNamesByChar */
       @JsonRawValue
         @GetMapping(path = "/getChar/{lettera}")
          public ResponseEntity<String> getNamesByChar(@PathVariable("lettera") Character lettera) {
@@ -46,27 +43,22 @@ public class PersonController {
            }
            return  ResponseEntity.ok(sb.toString());
          }
-
-  // @ResponseStatus(code=HttpStatus.NOT_FOUND, reason = "FFFFFFFFFFFd")
-
         /* getLavoroByPersona */
-        @JsonRawValue
+        @JsonRawValue // @ResponseStatus(code=HttpStatus.NOT_FOUND, reason = "FFFFFFFFFFFd")
        @GetMapping(path = "/getLavoroByPersona/{name}")
        public @ResponseBody Optional<Lavoro> getLavoroByPersona(@PathVariable("name") String name) {
         return personService.findByName(name)
         .map(Person::getLavoro);
     }
-
     @DeleteMapping(path = "{id}")
     public void deletePersonById(@PathVariable("id") Long id) {
         personService.deleteById(id);
     }
-
-    @PutMapping(path = "/name/{id}") //RIGUARDARE
+    @PutMapping(path = "/name/{id}")
     public Optional<Person> updatePost(@PathVariable Long id, @RequestBody Person personUpDate) {
         return personService.findById(id)
                 .map(person -> {
-                    person.setName(personUpDate.getName(personService.findAll()));
+                    person.setName(personUpDate.getName());
                     return personService.save(person);
                 });
     }

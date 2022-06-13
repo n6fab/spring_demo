@@ -11,38 +11,29 @@ import java.util.Optional;
 @Service
 public class PersonServiceImpl implements PersonService {
     private final PersonDao personDao;
-
     public PersonServiceImpl(PersonDao personDao) {
         this.personDao = personDao;
     }
-
-
     @Override
-    public Person save(Person p) {
-        return personDao.save(p);
+    public Person save(Person person) {
+        return personDao.save(person);
     }
-
     @Override
     public Optional<Person> findByName(String name) {
         return personDao.findByName(name);
     }
-
     @Override
     public void deleteById(Long id) {
         personDao.deleteById(id);
-
     }
-
     @Override
     public Optional<Person> findById(Long id) {
         return personDao.findById(id);
     }
-
     @Override
     public Iterable<Person> findAll() {
         return personDao.findAll();
     }
-
     @Override
     public List<Person> findByChar(Character lettera) {
         return personDao.findByChar(lettera);
